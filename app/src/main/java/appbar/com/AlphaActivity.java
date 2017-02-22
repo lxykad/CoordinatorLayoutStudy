@@ -13,7 +13,7 @@ public class AlphaActivity extends AppCompatActivity {
 
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.title_layout);
 
-        //relativeLayout.getBackground().setAlpha(0);//透明度初始化为0
+        relativeLayout.getBackground().setAlpha(0);//透明度初始化为0
     }
 
 }

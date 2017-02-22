@@ -22,101 +22,111 @@
                 android:id="@+id/title_layout"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="#39c6c1" />
+                android:background="#ffffff" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/scroll_view"
+    <!--加入这个刷新 布局就不显示-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swip_refresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="appbar.com.TitleBarAlphaBehavior">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff"
-            android:orientation="vertical">
+            android:background="#3f00">
 
-            <ImageView
-                android:id="@+id/iv1"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:elevation="3dp"
-                android:src="@mipmap/a" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:elevation="@dimen/dp_10"
-                android:src="@mipmap/b" />
+            <LinearLayout
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:elevation="5dp"
-                android:src="@mipmap/c" />
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:elevation="3dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/a" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:elevation="@dimen/dp_10"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/b" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:elevation="5dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/c" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/b" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/a" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/c" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/a" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/a" />
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@mipmap/a" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/b" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/a" />
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@mipmap/ic_launcher" />
 
-            <ImageView
-                android:layout_width="220dp"
-                android:layout_height="220dp"
-                android:src="@mipmap/c" />
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
 
-    </android.support.v4.widget.NestedScrollView>
+                <ImageView
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:src="@mipmap/ic_launcher" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </android.support.design.widget.CoordinatorLayout>

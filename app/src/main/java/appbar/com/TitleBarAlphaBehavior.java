@@ -53,7 +53,7 @@ public class TitleBarAlphaBehavior extends CoordinatorLayout.Behavior<View> {
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
         this.dy = dy;
-        // System.out.println("alpha=======y====" + dy);//上滑 大于0，下滑 小于0
+        //System.out.println("alpha=======dy====" + dy);//上滑 大于0，下滑 小于0
     }
 
     @Override
@@ -77,14 +77,18 @@ public class TitleBarAlphaBehavior extends CoordinatorLayout.Behavior<View> {
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
 
+        /**
+         * 最外层嵌套swiprefresh ，behavior 设置给最外层的swiprefresh，
+         * 注意，此时滑动的不再是 child，而是最外层的swiprefresh，这事不能再用child的scrollY计算滑动距离,此时滑动的为NestedScrollView
+         */
         int offset = child.getContext().getResources().getDimensionPixelOffset(R.dimen.header_height); // 45dp 180
 
         int scrollY = child.getScrollY(); // 上滑变大，下滑变小，下滑不动值为0
 
         View iv1 = child.findViewById(R.id.iv1);
-        int width = iv1.getWidth();// 45dp 180
+        int width = iv1.getWidth();// 45dp 180   120---480   480-180 = 300
 
-        // System.out.println("alpha=======y====" + scrollY);
+        //System.out.println("alpha=======y====" + iv1.getScrollY());
 
         //=================
         //int titleWidth = target.findViewById(R.id.title_layout).getWidth();
@@ -92,20 +96,52 @@ public class TitleBarAlphaBehavior extends CoordinatorLayout.Behavior<View> {
 
         //System.out.println("alpha=======simpleName====" + simpleName);//CoordinatorLayout
 
-        View title = coordinatorLayout.findViewById(R.id.title_layout);
+        View sv = coordinatorLayout.findViewById(R.id.scroll_view);
+        sv.getScaleY();
 
-        System.out.println("alpha=======title====" + title.getHeight());
+        System.out.println("alpha=======y====" + sv.getScrollY());
 
-        if (scrollY > 0 && scrollY < 720 && dy > 0) {// 上滑 透明度逐渐为255
+        // System.out.println("alpha=======title====" + title.getHeight());
+/*
+
+        if (scrollY > 0 && scrollY < 1000 && dy > 0) {// 上滑 透明度逐渐为255
             // System.out.println("alpha===========上滑 透明度逐渐为255");
-            int value = 720 / scrollY;
+            int value = 1000 / scrollY;
             title.getBackground().setAlpha(value);
 
-        } else if (dy < 0 && scrollY > 0 && scrollY < 720) {//下滑 透明度逐渐为0
+        } else if (dy < 0 && scrollY > 0 && scrollY < 1000) {//下滑 透明度逐渐为0
             // System.out.println("alpha===========下滑 透明度逐渐为0");
-            int value = 720 / scrollY;
+            int value = 1000 / scrollY;
             title.getBackground().setAlpha(value);
         }
+*/
+        View title = coordinatorLayout.findViewById(R.id.title_layout);
+
+        int value = 1000;
+        float percent = scrollY / 1000f;
+
+        if (dy > 0) {//上滑
+
+            if (scrollY > 0 && scrollY <= value) {
+
+                title.getBackground().setAlpha((int) (value * percent));
+            }
+            if (scrollY > value) {
+                title.getBackground().setAlpha(255);
+            }
+
+
+        } else if (dy < 0) {//下滑
+
+            if (scrollY > 0 && scrollY <= value) {
+
+                title.getBackground().setAlpha((int) (255 - value * percent));
+            }
+
+        } else {
+            title.getBackground().setAlpha(0);
+        }
+
 
     }
 
@@ -113,6 +149,6 @@ public class TitleBarAlphaBehavior extends CoordinatorLayout.Behavior<View> {
     @Override
     public boolean onNestedFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY, boolean consumed) {
 
-        return false;
+        return super.onNestedPreFling(coordinatorLayout, child, target, velocityX, velocityY);
     }
 }
